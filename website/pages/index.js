@@ -12,9 +12,99 @@ import {
   ListItem,
   Link,
   HStack,
-  Icon,
+  IconButton,
+  SimpleGrid,
 } from '@chakra-ui/react'
+import { CopyIcon, CheckIcon } from '@chakra-ui/icons'
 import { compile } from '../lib/compiler'
+
+function highlightCode(code) {
+  const keywords = [
+    'आरम्भ',
+    'समाप्त',
+    'मान',
+    'मुद्रय',
+    'यावत्',
+    'यदि',
+    'अन्यथा',
+    'विराम',
+    'अग्रिम',
+    'सत्य',
+    'असत्य',
+    'शून्य',
+  ]
+
+  let highlighted = code
+
+  highlighted = highlighted.replace(
+    /("([^"\\]|\\.)*"|'([^'\\]|\\.)*')/g,
+    '<span style="color: #98C379;">$&</span>'
+  )
+
+  highlighted = highlighted.replace(
+    /(\/\/.*$)/gm,
+    '<span style="color: #5C6370;">$&</span>'
+  )
+
+  highlighted = highlighted.replace(
+    /(\b\d+\b)/g,
+    '<span style="color: #D19A66;">$&</span>'
+  )
+
+  keywords.forEach((keyword) => {
+    const regex = new RegExp(`(${keyword.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')})`, 'g')
+    highlighted = highlighted.replace(regex, '<span style="color: #C678DD;">$1</span>')
+  })
+
+  highlighted = highlighted.replace(
+    /([{}()])/g,
+    '<span style="color: #ABB2BF;">$1</span>'
+  )
+
+  return highlighted
+}
+
+function CopyableCodeBlock({ code, ...props }) {
+  const [copied, setCopied] = useState(false)
+
+  const handleCopy = () => {
+    navigator.clipboard.writeText(code).then(() => {
+      setCopied(true)
+      setTimeout(() => setCopied(false), 2000)
+    })
+  }
+
+  return (
+    <Box position="relative" {...props}>
+      <Box
+        p={4}
+        borderRadius="md"
+        fontSize="sm"
+        display="block"
+        bg="gray.900"
+        color="gray.100"
+        border="1px solid"
+        borderColor="gray.700"
+        fontFamily="mono"
+        whiteSpace="pre-wrap"
+        overflowX="auto"
+        dangerouslySetInnerHTML={{ __html: highlightCode(code) }}
+      />
+      <IconButton
+        aria-label="Copy code"
+        icon={copied ? <CheckIcon /> : <CopyIcon />}
+        size="sm"
+        position="absolute"
+        top={2}
+        right={2}
+        onClick={handleCopy}
+        bg="gray.700"
+        color="white"
+        _hover={{ bg: 'gray.600' }}
+      />
+    </Box>
+  )
+}
 
 const defaultCode = `मान x = 3
 
@@ -86,35 +176,21 @@ export default function Home() {
               mb={6}
               fontFamily="ancient"
               fontWeight="700"
-              letterSpacing="0.15em"
+              letterSpacing="0.2em"
               bgGradient="linear(135deg, #DAA520 0%, #FF9933 25%, #8B0000 50%, #4B0082 75%, #DAA520 100%)"
               bgClip="text"
               textShadow="0 4px 8px rgba(218, 165, 32, 0.4), 0 8px 16px rgba(139, 0, 0, 0.3), 0 12px 24px rgba(75, 0, 130, 0.2)"
               position="relative"
               zIndex={1}
+              textTransform="uppercase"
               style={{
                 WebkitTextStroke: '2px rgba(218, 165, 32, 0.2)',
                 filter: 'drop-shadow(0 4px 8px rgba(139, 0, 0, 0.4))',
                 textRendering: 'optimizeLegibility',
               }}
             >
-              सूत्र
-            </Heading>
-            <Text
-              fontSize={{ base: '1.5rem', md: '2rem' }}
-              color="ancient.deepRed"
-              fontWeight="600"
-              letterSpacing="0.3em"
-              mt={-6}
-              mb={2}
-              fontFamily="ancient"
-              textTransform="uppercase"
-              position="relative"
-              zIndex={1}
-              textShadow="0 2px 4px rgba(139, 0, 0, 0.2)"
-            >
               SUTRA
-            </Text>
+            </Heading>
             <Text fontSize="xl" color="gray.700" mb={3} fontWeight="500">
               A tiny Sanskrit-style joke language that compiles to JavaScript.
             </Text>
@@ -185,6 +261,18 @@ export default function Home() {
                 </Box>
               </Box>
             </VStack>
+            <Box mt={6} pt={6} borderTop="1px solid" borderColor="gray.200">
+              <Text fontSize="sm" color="gray.600" mb={3} fontWeight="600">
+                Supported in v2:
+              </Text>
+              <UnorderedList spacing={1} fontSize="sm" color="gray.600">
+                <ListItem>Variables</ListItem>
+                <ListItem>Print</ListItem>
+                <ListItem>If / Else</ListItem>
+                <ListItem>While</ListItem>
+                <ListItem>Break / Continue</ListItem>
+              </UnorderedList>
+            </Box>
           </Box>
 
           <Box
@@ -229,6 +317,147 @@ export default function Home() {
                 sutra run hello.skt
               </Code>
             </VStack>
+          </Box>
+
+          <Box
+            bg="white"
+            p={8}
+            borderRadius="xl"
+            boxShadow="lg"
+            border="1px solid"
+            borderColor="gray.200"
+          >
+            <Heading as="h2" size="lg" mb={6} fontFamily="heading" color="gray.800">
+              Documentation
+            </Heading>
+            <Text fontSize="md" color="gray.600" mb={6}>
+              Sutra is a tiny Sanskrit-style joke language that compiles to JavaScript.
+            </Text>
+
+            <SimpleGrid columns={{ base: 1, md: 2 }} spacing={8}>
+              <Box>
+                <Heading as="h3" size="md" mb={3} color="gray.800">
+                  General
+                </Heading>
+                <Text fontSize="sm" color="gray.600" mb={3}>
+                  आरम्भ and समाप्त are optional program boundaries. If both exist, only code inside them is compiled. If neither exists, the whole file is compiled. Anything outside will be ignored.
+                </Text>
+                <Text fontSize="xs" color="gray.500" mb={2} fontStyle="italic">
+                  This will be ignored
+                </Text>
+                <CopyableCodeBlock
+                  code={`आरम्भ
+  // Write code here
+समाप्त
+
+This too`}
+                />
+              </Box>
+
+              <Box>
+                <Heading as="h3" size="md" mb={3} color="gray.800">
+                  Variables
+                </Heading>
+                <Text fontSize="sm" color="gray.600" mb={3}>
+                  Variables can be declared using मान.
+                </Text>
+                <CopyableCodeBlock
+                  code={`आरम्भ
+  मान a = 10;
+  मान b = "two";
+  मान c = 15;
+  a = a + 1;
+  b = 21;
+  c *= 2;
+समाप्त`}
+                />
+              </Box>
+
+              <Box>
+                <Heading as="h3" size="md" mb={3} color="gray.800">
+                  Types
+                </Heading>
+                <Text fontSize="sm" color="gray.600" mb={3}>
+                  Numbers and strings are like other languages. शून्य denotes null values. सत्य and असत्य are the boolean values.
+                </Text>
+                <CopyableCodeBlock
+                  code={`आरम्भ
+  मान a = 10;
+  मान b = 10 + (15*20);
+  मान c = "two";
+  मान d = 'ok';
+  मान e = शून्य;
+  मान f = सत्य;
+  मान g = असत्य;
+समाप्त`}
+                />
+              </Box>
+
+              <Box>
+                <Heading as="h3" size="md" mb={3} color="gray.800">
+                  Built-ins
+                </Heading>
+                <Text fontSize="sm" color="gray.600" mb={3}>
+                  Use मुद्रय to print anything to console.
+                </Text>
+                <CopyableCodeBlock
+                  code={`आरम्भ
+  मुद्रय("Hello World");
+  मान a = 10;
+  {
+    मान b = 20;
+    मुद्रय(a + b);
+  }
+  मुद्रय(5, 'ok', शून्य, सत्य, असत्य);
+समाप्त`}
+                />
+              </Box>
+
+              <Box>
+                <Heading as="h3" size="md" mb={3} color="gray.800">
+                  Conditionals
+                </Heading>
+                <Text fontSize="sm" color="gray.600" mb={3}>
+                  Sutra supports if-else construct. यदि block executes if condition is true, otherwise अन्यथा block executes.
+                </Text>
+                <CopyableCodeBlock
+                  code={`आरम्भ
+  मान a = 10;
+  यदि (a < 20) {
+    मुद्रय("a is less than 20");
+  } अन्यथा {
+    मुद्रय("a is greater than or equal to 20");
+  }
+समाप्त`}
+                />
+              </Box>
+
+              <Box>
+                <Heading as="h3" size="md" mb={3} color="gray.800">
+                  Loops
+                </Heading>
+                <Text fontSize="sm" color="gray.600" mb={3}>
+                  Statements inside यावत् blocks are executed as long as a specified condition evaluates to true. Use विराम to break the loop and अग्रिम to continue within loop.
+                </Text>
+                <CopyableCodeBlock
+                  code={`आरम्भ
+  मान a = 0;
+  यावत् (a < 10) {
+    a += 1;
+    यदि (a === 5) {
+      मुद्रय("inside loop", a);
+      अग्रिम;
+    }
+    यदि (a === 6) {
+      विराम;
+    }
+    मुद्रय(a);
+  }
+  मुद्रय("done");
+समाप्त`}
+                />
+              </Box>
+            </SimpleGrid>
           </Box>
 
           <Box
