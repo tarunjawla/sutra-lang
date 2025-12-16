@@ -261,18 +261,6 @@ export default function Home() {
                 </Box>
               </Box>
             </VStack>
-            <Box mt={6} pt={6} borderTop="1px solid" borderColor="gray.200">
-              <Text fontSize="sm" color="gray.600" mb={3} fontWeight="600">
-                Supported in v2:
-              </Text>
-              <UnorderedList spacing={1} fontSize="sm" color="gray.600">
-                <ListItem>Variables</ListItem>
-                <ListItem>Print</ListItem>
-                <ListItem>If / Else</ListItem>
-                <ListItem>While</ListItem>
-                <ListItem>Break / Continue</ListItem>
-              </UnorderedList>
-            </Box>
           </Box>
 
           <Box
