@@ -195,7 +195,7 @@ export default function Home() {
               A tiny Sanskrit-style joke language that compiles to JavaScript.
             </Text>
             <Text fontSize="md" color="gray.600" fontStyle="italic">
-              Made for fun. Built for learning. Not for production.
+              Made for fun. Built for learning. Not for production. Built for NASA (just kidding).
             </Text>
           </Box>
 
