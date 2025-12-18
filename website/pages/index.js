@@ -24,6 +24,7 @@ function highlightCode(code) {
     'समाप्त',
     'मान',
     'मुद्रय',
+    'दर्शय',
     'यावत्',
     'यदि',
     'अन्यथा',
@@ -155,8 +156,13 @@ export default function Home() {
   }
 
   return (
-    <Box minH="100vh" bg="parchment.100">
-      <Container maxW="1000px" py={12}>
+    <Box
+      minH="100vh"
+      bgGradient="linear(to-b, parchment.100, parchment.200)"
+      bgImage="radial-gradient(circle at 0 0, rgba(218, 165, 32, 0.06) 0, transparent 55%), radial-gradient(circle at 100% 0, rgba(139, 0, 0, 0.05) 0, transparent 55%)"
+      bgRepeat="no-repeat"
+    >
+      <Container maxW={{ base: '100%', md: '1000px' }} py={{ base: 8, md: 12 }} px={{ base: 4, md: 6 }}>
         <VStack spacing={10} align="stretch">
           <Box textAlign="center" py={12} position="relative">
             <Box
@@ -172,7 +178,7 @@ export default function Home() {
             />
             <Heading
               as="h1"
-              fontSize={{ base: '5rem', md: '7rem', lg: '9rem' }}
+              fontSize={{ base: '3.5rem', md: '6rem', lg: '8rem' }}
               mb={6}
               fontFamily="ancient"
               fontWeight="700"
@@ -200,14 +206,14 @@ export default function Home() {
           </Box>
 
           <Box
-            bg="white"
-            p={8}
+            bg="parchment.50"
+            p={{ base: 6, md: 8 }}
             borderRadius="xl"
             boxShadow="lg"
             border="1px solid"
-            borderColor="gray.200"
+            borderColor="ancient.gold"
           >
-            <Heading as="h2" size="lg" mb={6} fontFamily="heading" color="gray.800">
+            <Heading as="h2" size="lg" mb={6} fontFamily="heading" color="ancient.deepRed">
               Playground
             </Heading>
             <VStack spacing={5} align="stretch">
@@ -265,14 +271,14 @@ export default function Home() {
 
           <Box
             textAlign="center"
-            bg="white"
-            p={8}
+            bg="parchment.50"
+            p={{ base: 6, md: 8 }}
             borderRadius="xl"
             boxShadow="lg"
             border="1px solid"
-            borderColor="gray.200"
+            borderColor="ancient.gold"
           >
-            <Heading as="h2" size="lg" mb={6} fontFamily="heading" color="gray.800">
+            <Heading as="h2" size="lg" mb={6} fontFamily="heading" color="ancient.deepRed">
               Install
             </Heading>
             <VStack spacing={4}>
@@ -308,23 +314,23 @@ export default function Home() {
           </Box>
 
           <Box
-            bg="white"
-            p={8}
+            bg="parchment.50"
+            p={{ base: 6, md: 8 }}
             borderRadius="xl"
             boxShadow="lg"
             border="1px solid"
-            borderColor="gray.200"
+            borderColor="ancient.gold"
           >
-            <Heading as="h2" size="lg" mb={6} fontFamily="heading" color="gray.800">
+            <Heading as="h2" size="lg" mb={6} fontFamily="heading" color="ancient.deepRed">
               Documentation
             </Heading>
             <Text fontSize="md" color="gray.600" mb={6}>
               Sutra is a tiny Sanskrit-style joke language that compiles to JavaScript.
             </Text>
 
-            <SimpleGrid columns={{ base: 1, md: 2 }} spacing={8}>
+            <SimpleGrid columns={{ base: 1, md: 2 }} spacing={{ base: 6, md: 8 }}>
               <Box>
-                <Heading as="h3" size="md" mb={3} color="gray.800">
+                <Heading as="h3" size="md" mb={3} color="ancient.maroon">
                   General
                 </Heading>
                 <Text fontSize="sm" color="gray.600" mb={3}>
@@ -343,7 +349,7 @@ This too`}
               </Box>
 
               <Box>
-                <Heading as="h3" size="md" mb={3} color="gray.800">
+                <Heading as="h3" size="md" mb={3} color="ancient.maroon">
                   Variables
                 </Heading>
                 <Text fontSize="sm" color="gray.600" mb={3}>
@@ -362,7 +368,7 @@ This too`}
               </Box>
 
               <Box>
-                <Heading as="h3" size="md" mb={3} color="gray.800">
+                <Heading as="h3" size="md" mb={3} color="ancient.maroon">
                   Types
                 </Heading>
                 <Text fontSize="sm" color="gray.600" mb={3}>
@@ -382,7 +388,7 @@ This too`}
               </Box>
 
               <Box>
-                <Heading as="h3" size="md" mb={3} color="gray.800">
+                <Heading as="h3" size="md" mb={3} color="ancient.maroon">
                   Built-ins
                 </Heading>
                 <Text fontSize="sm" color="gray.600" mb={3}>
@@ -402,7 +408,7 @@ This too`}
               </Box>
 
               <Box>
-                <Heading as="h3" size="md" mb={3} color="gray.800">
+                <Heading as="h3" size="md" mb={3} color="ancient.maroon">
                   Conditionals
                 </Heading>
                 <Text fontSize="sm" color="gray.600" mb={3}>
@@ -421,7 +427,7 @@ This too`}
               </Box>
 
               <Box>
-                <Heading as="h3" size="md" mb={3} color="gray.800">
+                <Heading as="h3" size="md" mb={3} color="ancient.maroon">
                   Loops
                 </Heading>
                 <Text fontSize="sm" color="gray.600" mb={3}>
@@ -449,14 +455,14 @@ This too`}
           </Box>
 
           <Box
-            bg="white"
-            p={8}
+            bg="parchment.50"
+            p={{ base: 6, md: 8 }}
             borderRadius="xl"
             boxShadow="lg"
             border="1px solid"
-            borderColor="gray.200"
+            borderColor="ancient.gold"
           >
-            <Heading as="h2" size="lg" mb={6} fontFamily="heading" color="gray.800">
+            <Heading as="h2" size="lg" mb={6} fontFamily="heading" color="ancient.deepRed">
               Why Sutra Exists
             </Heading>
             <UnorderedList spacing={3} fontSize="lg" color="gray.700">
