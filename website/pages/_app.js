@@ -1,3 +1,4 @@
+import Head from 'next/head'
 import { ChakraProvider, extendTheme } from '@chakra-ui/react'
 import '@fontsource/noto-sans-devanagari/400.css'
 import '@fontsource/noto-sans-devanagari/700.css'
@@ -50,6 +51,14 @@ const theme = extendTheme({
 function MyApp({ Component, pageProps }) {
   return (
     <ChakraProvider theme={theme}>
+      <Head>
+        <title>Sutra – A tiny Sanskrit-style joke language</title>
+        <meta
+          name="description"
+          content="Sutra is a tiny Sanskrit-style joke language that compiles to JavaScript."
+        />
+        <link rel="icon" href="/sutra-favicon.svg" />
+      </Head>
       <Component {...pageProps} />
     </ChakraProvider>
   )

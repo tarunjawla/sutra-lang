@@ -1,5 +1,5 @@
 {
-  "name": "sutra",
+  "name": "@tarunjawla/sutra",
   "version": "2.1.0",
   "description": "A tiny Sanskrit-style joke language that compiles to JavaScript",
   "bin": {

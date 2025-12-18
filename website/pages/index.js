@@ -294,7 +294,7 @@ export default function Home() {
                 w="100%"
                 maxW="500px"
               >
-                npm install -g sutra
+                npm install -g @tarunjawla/sutra
               </Code>
               <Code
                 p={4}
