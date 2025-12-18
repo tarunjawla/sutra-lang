@@ -321,6 +321,33 @@ export default function Home() {
             border="1px solid"
             borderColor="ancient.gold"
           >
+            <Heading as="h2" size="lg" mb={4} fontFamily="heading" color="ancient.deepRed">
+              Examples
+            </Heading>
+            <Text fontSize="sm" color="gray.600" mb={4}>
+              Explore more Sutra programs in the GitHub examples folder.
+            </Text>
+            <VStack align="flex-start" spacing={2}>
+              <Link
+                href="https://github.com/tarunjawla/sutra/tree/main/examples"
+                isExternal
+                color="ancient.deepRed"
+                fontSize="sm"
+                _hover={{ textDecoration: 'underline', color: 'ancient.maroon' }}
+              >
+                GitHub examples →
+              </Link>
+            </VStack>
+          </Box>
+
+          <Box
+            bg="parchment.50"
+            p={{ base: 6, md: 8 }}
+            borderRadius="xl"
+            boxShadow="lg"
+            border="1px solid"
+            borderColor="ancient.gold"
+          >
             <Heading as="h2" size="lg" mb={6} fontFamily="heading" color="ancient.deepRed">
               Documentation
             </Heading>

@@ -11,5 +11,10 @@
   "keywords": ["joke-language", "compiler", "javascript", "sanskrit"],
   "author": "",
   "license": "ISC",
-  "type": "commonjs"
+  "type": "commonjs",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/tarunjawla/sutra.git"
+  },
+  "homepage": "https://sutra.tarunjawla.com"
 }
