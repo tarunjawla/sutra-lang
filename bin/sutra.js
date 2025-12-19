@@ -7,8 +7,21 @@ const { compile } = require('../src/compiler.js');
 
 const args = process.argv.slice(2);
 
-if (args.length === 0 || args[0] !== 'run' || args.length < 2) {
+if (args.length === 0) {
   console.error('Usage: sutra run <file.skt>');
+  console.error('       sutra --version');
+  process.exit(1);
+}
+
+if (args[0] === '--version' || args[0] === '-v') {
+  const packageJson = require('../package.json');
+  console.log(packageJson.version);
+  process.exit(0);
+}
+
+if (args[0] !== 'run' || args.length < 2) {
+  console.error('Usage: sutra run <file.skt>');
+  console.error('       sutra --version');
   process.exit(1);
 }
 

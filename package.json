@@ -1,6 +1,6 @@
 {
   "name": "@tarunjawla/sutra",
-  "version": "2.1.0",
+  "version": "2.1.1",
   "description": "A tiny Sanskrit-style joke language that compiles to JavaScript",
   "bin": {
     "sutra": "./bin/sutra.js"
@@ -8,7 +8,12 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "keywords": ["joke-language", "compiler", "javascript", "sanskrit"],
+  "keywords": [
+    "joke-language",
+    "compiler",
+    "javascript",
+    "sanskrit"
+  ],
   "author": "",
   "license": "ISC",
   "type": "commonjs",

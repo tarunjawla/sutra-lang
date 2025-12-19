@@ -33,6 +33,10 @@ const theme = extendTheme({
       body: {
         bg: '#f5f1e8',
         color: '#2c2c2c',
+        overflowX: 'hidden',
+      },
+      html: {
+        overflowX: 'hidden',
       },
       '*::placeholder': {
         color: 'gray.400',

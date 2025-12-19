@@ -158,20 +158,24 @@ export default function Home() {
   return (
     <Box
       minH="100vh"
+      w="100%"
+      maxW="100vw"
+      overflowX="hidden"
       bgGradient="linear(to-b, parchment.100, parchment.200)"
       bgImage="radial-gradient(circle at 0 0, rgba(218, 165, 32, 0.06) 0, transparent 55%), radial-gradient(circle at 100% 0, rgba(139, 0, 0, 0.05) 0, transparent 55%)"
       bgRepeat="no-repeat"
     >
-      <Container maxW={{ base: '100%', md: '1000px' }} py={{ base: 8, md: 12 }} px={{ base: 4, md: 6 }}>
+      <Container maxW={{ base: '100%', md: '1000px' }} py={{ base: 8, md: 12 }} px={{ base: 4, md: 6 }} w="100%" overflowX="hidden">
         <VStack spacing={10} align="stretch">
-          <Box textAlign="center" py={12} position="relative">
+          <Box textAlign="center" py={12} position="relative" overflow="hidden">
             <Box
               position="absolute"
               top="50%"
               left="50%"
               transform="translate(-50%, -50%)"
-              width="120%"
+              width={{ base: '100%', md: '120%' }}
               height="120%"
+              maxW="100vw"
               bgGradient="radial(circle, rgba(218, 165, 32, 0.15) 0%, transparent 70%)"
               zIndex={0}
               pointerEvents="none"
